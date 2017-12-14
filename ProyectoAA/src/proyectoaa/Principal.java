@@ -5,6 +5,16 @@
  */
 package proyectoaa;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Alexy
@@ -16,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +38,257 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_Knapsack = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jt_valorKnapsack = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jt_pesoKnapsack = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_ValoresIngresados = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jt_capacidadMochilas = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jb_Coloreabilidad = new javax.swing.JButton();
+        jb_VertexCover = new javax.swing.JButton();
+        jb_Clique = new javax.swing.JButton();
+        jb_Knapsack = new javax.swing.JButton();
+        jl_SetImage = new javax.swing.JLabel();
+
+        jLabel1.setText("Valor");
+
+        jLabel2.setText("Peso");
+
+        jta_ValoresIngresados.setColumns(20);
+        jta_ValoresIngresados.setRows(5);
+        jScrollPane1.setViewportView(jta_ValoresIngresados);
+
+        jButton1.setText("Correr Knapsack");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setText("Capacidad mochilas");
+
+        jButton2.setText("Agregar a la mochila");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_KnapsackLayout = new javax.swing.GroupLayout(jd_Knapsack.getContentPane());
+        jd_Knapsack.getContentPane().setLayout(jd_KnapsackLayout);
+        jd_KnapsackLayout.setHorizontalGroup(
+            jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                        .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jt_capacidadMochilas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jt_valorKnapsack)
+                                    .addComponent(jt_pesoKnapsack, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
+                            .addComponent(jButton2))
+                        .addGap(0, 448, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jd_KnapsackLayout.setVerticalGroup(
+            jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jt_valorKnapsack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jt_pesoKnapsack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jt_capacidadMochilas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jb_Coloreabilidad.setText("K-Coloreabilidad en grafos");
+        jb_Coloreabilidad.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jb_ColoreabilidadMouseMoved(evt);
+            }
+        });
+
+        jb_VertexCover.setText("Cobertura de vertices");
+        jb_VertexCover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jb_VertexCoverMouseMoved(evt);
+            }
+        });
+
+        jb_Clique.setText("Clique");
+        jb_Clique.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jb_CliqueMouseMoved(evt);
+            }
+        });
+
+        jb_Knapsack.setText("Knapsack");
+        jb_Knapsack.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jb_KnapsackMouseMoved(evt);
+            }
+        });
+        jb_Knapsack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_KnapsackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jb_Knapsack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Clique, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_VertexCover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Coloreabilidad, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(jl_SetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jl_SetImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jb_Coloreabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(jb_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jb_Clique, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(jb_Knapsack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_ColoreabilidadMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ColoreabilidadMouseMoved
+        try {
+            // TODO add your handling code here:
+            File ArchivoImagen = new File("./src/Images/Coloreabilidad.png");
+            BufferedImage img = ImageIO.read(ArchivoImagen);
+            Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaled);
+            jl_SetImage.setIcon(icon);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jb_ColoreabilidadMouseMoved
+
+    private void jb_VertexCoverMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_VertexCoverMouseMoved
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            File ArchivoImagen = new File("./src/Images/VertexCover.jpg");
+            BufferedImage img = ImageIO.read(ArchivoImagen);
+            Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaled);
+            jl_SetImage.setIcon(icon);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jb_VertexCoverMouseMoved
+
+    private void jb_CliqueMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CliqueMouseMoved
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            File ArchivoImagen = new File("./src/Images/Clique.png");
+            BufferedImage img = ImageIO.read(ArchivoImagen);
+            Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaled);
+            jl_SetImage.setIcon(icon);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jb_CliqueMouseMoved
+
+    private void jb_KnapsackMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_KnapsackMouseMoved
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            File ArchivoImagen = new File("./src/Images/Knapsack.png");
+            BufferedImage img = ImageIO.read(ArchivoImagen);
+            Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaled);
+            jl_SetImage.setIcon(icon);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jb_KnapsackMouseMoved
+
+    private void jb_KnapsackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_KnapsackMouseClicked
+        // TODO add your handling code here:
+        jd_Knapsack.setModal(true);
+        jd_Knapsack.pack();
+        jd_Knapsack.setLocationRelativeTo(this);
+        jd_Knapsack.setVisible(true);
+    }//GEN-LAST:event_jb_KnapsackMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        ValoresVisibles = "";
+        
+        Valores.add(Integer.parseInt(jt_valorKnapsack.getText()));
+        Pesos.add(Integer.parseInt(jt_pesoKnapsack.getText()));
+
+        for (int i = 0; i < Valores.size(); i++) {
+            ValoresVisibles += "Valor = " + Valores.get(i) + ", Peso = " + Pesos.get(i) + "\n";
+        }
+        
+        
+        jta_ValoresIngresados.setText(ValoresVisibles);
+        
+        valoresDistintos();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        long startTime = System.nanoTime();
+        Knapsack();
+        long estimatedTime = System.nanoTime()- startTime;
+        
+        ValoresVisibles+= estimatedTime + " milisegundos";
+        jta_ValoresIngresados.setText(ValoresVisibles);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,5 +326,93 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jb_Clique;
+    private javax.swing.JButton jb_Coloreabilidad;
+    private javax.swing.JButton jb_Knapsack;
+    private javax.swing.JButton jb_VertexCover;
+    private javax.swing.JDialog jd_Knapsack;
+    private javax.swing.JLabel jl_SetImage;
+    private javax.swing.JTextField jt_capacidadMochilas;
+    private javax.swing.JTextField jt_pesoKnapsack;
+    private javax.swing.JTextField jt_valorKnapsack;
+    private javax.swing.JTextArea jta_ValoresIngresados;
     // End of variables declaration//GEN-END:variables
+    /*Knapsack*/
+    ArrayList Valores = new ArrayList();
+    ArrayList Pesos = new ArrayList();
+    int ValoresDistintos = 0;
+    int CapacidadMochilas = 0;
+    int ValoresIguales = 0;
+    int[][] ValoresMochilas;
+    
+    String ValoresVisibles = "";
+    /*Knapsack*/
+    
+    public void valoresDistintos() {
+        ArrayList CopiaValores = new ArrayList();
+        CopiaValores = (ArrayList) Valores.clone();
+
+        for (int i = 0; i < CopiaValores.size() - 1; i++) {
+            for (int j = i + 1; j < CopiaValores.size(); j++) {
+                if (CopiaValores.get(i) == CopiaValores.get(j)) {
+                    CopiaValores.remove(j);
+                }
+            }
+        }
+
+        ValoresDistintos = CopiaValores.size();
+    }
+
+    public void Knapsack() {
+        CapacidadMochilas = Integer.parseInt(jt_capacidadMochilas.getText());
+        ValoresMochilas = new int[Valores.size() + 1][CapacidadMochilas + 1];
+        
+        for (int i = 0; i <= CapacidadMochilas; i++) {
+            ValoresMochilas[0][i] = 0;
+        }
+        
+        for (int i = 0; i <= Valores.size(); i++) {
+            ValoresMochilas[i][0] = 0;
+        }
+        
+        for (int i = 1; i <= Pesos.size(); i++) {
+            for (int j = 1; j <= CapacidadMochilas; j++) {
+                if ((int)Pesos.get(i - 1) <= j) {
+                    ValoresMochilas[i][j] = maximo((int)Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int)Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
+                }else{
+                    ValoresMochilas[i][j] = ValoresMochilas[i - 1][j];
+                }
+            }
+        }
+        
+        ValoresVisibles += "--------------------------------" + "\n";
+        
+        for (int i = 1; i <= Pesos.size(); i++) {
+            ValoresVisibles += "Mochila #" + i + "\n";
+            for (int j = 1; j <= CapacidadMochilas; j++) {
+                if (ValoresMochilas[i][j] != 0) {
+                    ValoresVisibles += "Valor = " + ValoresMochilas[i][j];
+                }
+            }
+            ValoresVisibles += "\n" + "\n";
+        }
+    }
+    
+    public int maximo(int a, int b){
+        int maximo = 0;
+        
+        if (a > b) {
+            maximo = a;
+        }else{
+            maximo = b;
+        }
+        
+        return maximo;
+    }
 }
