@@ -5,6 +5,8 @@
  */
 package proyectoaa;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,6 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.View;
+import org.graphstream.ui.view.Viewer;
+
 
 /**
  *
@@ -27,6 +34,10 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        Viewer viewer = graph.display(true);
+        View view = viewer.getDefaultView();
+        jp_showGraph.add((Component) view);
     }
 
     /**
@@ -49,6 +60,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jt_capacidadMochilas = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jd_VertexCover = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        jt_Vertice_VertexCover = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jt_Vertice1_VertexCover = new javax.swing.JTextField();
+        jt_Vertice2_VertexCover = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jp_showGraph = new javax.swing.JPanel();
         jb_Coloreabilidad = new javax.swing.JButton();
         jb_VertexCover = new javax.swing.JButton();
         jb_Clique = new javax.swing.JButton();
@@ -130,6 +150,80 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel4.setText("Vertice");
+
+        jLabel5.setText("Arista");
+
+        jButton3.setText("Agregar vertice");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Agregar arista");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_showGraphLayout = new javax.swing.GroupLayout(jp_showGraph);
+        jp_showGraph.setLayout(jp_showGraphLayout);
+        jp_showGraphLayout.setHorizontalGroup(
+            jp_showGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jp_showGraphLayout.setVerticalGroup(
+            jp_showGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_VertexCoverLayout = new javax.swing.GroupLayout(jd_VertexCover.getContentPane());
+        jd_VertexCover.getContentPane().setLayout(jd_VertexCoverLayout);
+        jd_VertexCoverLayout.setHorizontalGroup(
+            jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jp_showGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                        .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(31, 31, 31)
+                        .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jt_Vertice_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Vertice1_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                                .addComponent(jt_Vertice2_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addComponent(jButton3))
+                        .addGap(0, 454, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jd_VertexCoverLayout.setVerticalGroup(
+            jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jt_Vertice_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(32, 32, 32)
+                .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jt_Vertice1_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Vertice2_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
+                .addComponent(jp_showGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jb_Coloreabilidad.setText("K-Coloreabilidad en grafos");
@@ -143,6 +237,11 @@ public class Principal extends javax.swing.JFrame {
         jb_VertexCover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jb_VertexCoverMouseMoved(evt);
+            }
+        });
+        jb_VertexCover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_VertexCoverMouseClicked(evt);
             }
         });
 
@@ -203,7 +302,7 @@ public class Principal extends javax.swing.JFrame {
     private void jb_ColoreabilidadMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ColoreabilidadMouseMoved
         try {
             // TODO add your handling code here:
-            File ArchivoImagen = new File("./src/Images/Coloreabilidad.png");
+            File ArchivoImagen = new File("./src/Imagenes/Coloreabilidad.png");
             BufferedImage img = ImageIO.read(ArchivoImagen);
             Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaled);
@@ -217,7 +316,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            File ArchivoImagen = new File("./src/Images/VertexCover.jpg");
+            File ArchivoImagen = new File("./src/Imagenes/VertexCover.jpg");
             BufferedImage img = ImageIO.read(ArchivoImagen);
             Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaled);
@@ -231,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            File ArchivoImagen = new File("./src/Images/Clique.png");
+            File ArchivoImagen = new File("./src/Imagenes/Clique.png");
             BufferedImage img = ImageIO.read(ArchivoImagen);
             Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaled);
@@ -245,7 +344,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            File ArchivoImagen = new File("./src/Images/Knapsack.png");
+            File ArchivoImagen = new File("./src/Imagenes/Knapsack.png");
             BufferedImage img = ImageIO.read(ArchivoImagen);
             Image scaled = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaled);
@@ -273,8 +372,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < Valores.size(); i++) {
             ValoresVisibles += "Valor = " + Valores.get(i) + ", Peso = " + Pesos.get(i) + "\n";
         }
-        
-        
+                
         jta_ValoresIngresados.setText(ValoresVisibles);
         
         valoresDistintos();
@@ -289,6 +387,30 @@ public class Principal extends javax.swing.JFrame {
         ValoresVisibles+= estimatedTime + " milisegundos";
         jta_ValoresIngresados.setText(ValoresVisibles);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jb_VertexCoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_VertexCoverMouseClicked
+        // TODO add your handling code here:
+        jd_VertexCover.setModal(true);
+        jd_VertexCover.pack();
+        jd_VertexCover.setLocationRelativeTo(this);
+        jd_VertexCover.setVisible(true);
+        
+        //jp_showGraph.setMaximumSize(new Dimension(5000, 300));
+    }//GEN-LAST:event_jb_VertexCoverMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        graph.addNode(jt_Vertice_VertexCover.getText());
+        
+        System.out.println("Nodo agregado");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        graph.addEdge(jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText(), jt_Vertice1_VertexCover.getText(), jt_Vertice2_VertexCover.getText());
+        
+        System.out.println("arista agregada");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,16 +450,25 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_Clique;
     private javax.swing.JButton jb_Coloreabilidad;
     private javax.swing.JButton jb_Knapsack;
     private javax.swing.JButton jb_VertexCover;
     private javax.swing.JDialog jd_Knapsack;
+    private javax.swing.JDialog jd_VertexCover;
     private javax.swing.JLabel jl_SetImage;
+    private javax.swing.JPanel jp_showGraph;
+    private javax.swing.JTextField jt_Vertice1_VertexCover;
+    private javax.swing.JTextField jt_Vertice2_VertexCover;
+    private javax.swing.JTextField jt_Vertice_VertexCover;
     private javax.swing.JTextField jt_capacidadMochilas;
     private javax.swing.JTextField jt_pesoKnapsack;
     private javax.swing.JTextField jt_valorKnapsack;
@@ -353,6 +484,11 @@ public class Principal extends javax.swing.JFrame {
     
     String ValoresVisibles = "";
     /*Knapsack*/
+    
+    /*Vertex Cover*/
+    Graph graph = new SingleGraph("Tutorial 1");
+    Viewer viewer;
+    /*Vertex Cover*/
     
     public void valoresDistintos() {
         ArrayList CopiaValores = new ArrayList();
