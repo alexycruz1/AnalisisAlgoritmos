@@ -400,14 +400,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        graph.addNode(jt_Vertice_VertexCover.getText());
+        Node n = graph.addNode(jt_Vertice_VertexCover.getText());
+        n.addAttribute("ui.label", jt_Vertice_VertexCover.getText());
         
         System.out.println("Nodo agregado");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        graph.addEdge(jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText(), jt_Vertice1_VertexCover.getText(), jt_Vertice2_VertexCover.getText());
+        Edge e = graph.addEdge(jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText(), jt_Vertice1_VertexCover.getText(), jt_Vertice2_VertexCover.getText());
+        e.addAttribute("ui.label", jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText());
         
         System.out.println("arista agregada");
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -486,7 +488,7 @@ public class Principal extends javax.swing.JFrame {
     /*Knapsack*/
     
     /*Vertex Cover*/
-    Graph graph = new SingleGraph("Tutorial 1");
+    Graph graph = new SingleGraph("Vertex Cover");
     Viewer viewer;
     /*Vertex Cover*/
     
