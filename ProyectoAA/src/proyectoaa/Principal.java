@@ -12,15 +12,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
-
 
 /**
  *
@@ -34,7 +35,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         Viewer viewer = graph.display(true);
         View view = viewer.getDefaultView();
         jp_showGraph.add((Component) view);
@@ -60,6 +61,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jt_capacidadMochilas = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jl_timeElapsed_Knapsack = new javax.swing.JLabel();
         jd_VertexCover = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
         jt_Vertice_VertexCover = new javax.swing.JTextField();
@@ -69,6 +71,8 @@ public class Principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jp_showGraph = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jl_timeElapsed_VertexCover = new javax.swing.JLabel();
         jb_Coloreabilidad = new javax.swing.JButton();
         jb_VertexCover = new javax.swing.JButton();
         jb_Clique = new javax.swing.JButton();
@@ -99,6 +103,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jl_timeElapsed_Knapsack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_timeElapsed_Knapsack.setText("Tiempo Transcurrido");
+
         javax.swing.GroupLayout jd_KnapsackLayout = new javax.swing.GroupLayout(jd_Knapsack.getContentPane());
         jd_Knapsack.getContentPane().setLayout(jd_KnapsackLayout);
         jd_KnapsackLayout.setHorizontalGroup(
@@ -109,11 +116,11 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jd_KnapsackLayout.createSequentialGroup()
                         .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
                             .addGroup(jd_KnapsackLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jt_capacidadMochilas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2)
                             .addGroup(jd_KnapsackLayout.createSequentialGroup()
                                 .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -121,9 +128,12 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jt_valorKnapsack)
-                                    .addComponent(jt_pesoKnapsack, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
-                            .addComponent(jButton2))
-                        .addGap(0, 448, Short.MAX_VALUE)))
+                                    .addComponent(jt_pesoKnapsack, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jd_KnapsackLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                        .addComponent(jl_timeElapsed_Knapsack, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jd_KnapsackLayout.setVerticalGroup(
@@ -146,7 +156,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jt_capacidadMochilas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(jd_KnapsackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jl_timeElapsed_Knapsack))
                 .addContainerGap())
         );
 
@@ -179,6 +191,16 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 565, Short.MAX_VALUE)
         );
 
+        jButton5.setText("Correr Vertex Cover");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jl_timeElapsed_VertexCover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_timeElapsed_VertexCover.setText("Tiempo Transcurrido");
+
         javax.swing.GroupLayout jd_VertexCoverLayout = new javax.swing.GroupLayout(jd_VertexCover.getContentPane());
         jd_VertexCover.getContentPane().setLayout(jd_VertexCoverLayout);
         jd_VertexCoverLayout.setHorizontalGroup(
@@ -198,27 +220,37 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5))
+                            .addGroup(jd_VertexCoverLayout.createSequentialGroup()
                                 .addComponent(jt_Vertice2_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton4))
-                            .addComponent(jButton3))
-                        .addGap(0, 454, Short.MAX_VALUE)))
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                                .addComponent(jl_timeElapsed_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jd_VertexCoverLayout.setVerticalGroup(
             jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_VertexCoverLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jt_Vertice_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jt_Vertice_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3)))
+                    .addGroup(jd_VertexCoverLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5)))
                 .addGap(32, 32, 32)
                 .addGroup(jd_VertexCoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jt_Vertice1_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jt_Vertice2_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jl_timeElapsed_VertexCover))
                 .addGap(18, 18, 18)
                 .addComponent(jp_showGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -365,16 +397,16 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         ValoresVisibles = "";
-        
+
         Valores.add(Integer.parseInt(jt_valorKnapsack.getText()));
         Pesos.add(Integer.parseInt(jt_pesoKnapsack.getText()));
 
         for (int i = 0; i < Valores.size(); i++) {
             ValoresVisibles += "Valor = " + Valores.get(i) + ", Peso = " + Pesos.get(i) + "\n";
         }
-                
+
         jta_ValoresIngresados.setText(ValoresVisibles);
-        
+
         valoresDistintos();
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -382,9 +414,12 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         long startTime = System.nanoTime();
         Knapsack();
-        long estimatedTime = System.nanoTime()- startTime;
+        long estimatedTime = System.nanoTime() - startTime;
         
-        ValoresVisibles+= estimatedTime + " milisegundos";
+        String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
+
+        jl_timeElapsed_Knapsack.setText(TiempoTranscurrido);
+        
         jta_ValoresIngresados.setText(ValoresVisibles);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -394,7 +429,7 @@ public class Principal extends javax.swing.JFrame {
         jd_VertexCover.pack();
         jd_VertexCover.setLocationRelativeTo(this);
         jd_VertexCover.setVisible(true);
-        
+
         //jp_showGraph.setMaximumSize(new Dimension(5000, 300));
     }//GEN-LAST:event_jb_VertexCoverMouseClicked
 
@@ -402,17 +437,39 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Node n = graph.addNode(jt_Vertice_VertexCover.getText());
         n.addAttribute("ui.label", jt_Vertice_VertexCover.getText());
-        
-        System.out.println("Nodo agregado");
+
+        Vertices.add(Integer.parseInt(jt_Vertice_VertexCover.getText()));
+
+        JOptionPane.showMessageDialog(jd_VertexCover, "Nodo " + jt_Vertice_VertexCover.getText() + " creado exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Edge e = graph.addEdge(jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText(), jt_Vertice1_VertexCover.getText(), jt_Vertice2_VertexCover.getText());
         e.addAttribute("ui.label", jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText());
-        
-        System.out.println("arista agregada");
+
+        Arista nuevaArista = new Arista(jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText(), Integer.parseInt(jt_Vertice1_VertexCover.getText()), Integer.parseInt(jt_Vertice2_VertexCover.getText()));
+        Aristas.add(nuevaArista);
+
+        JOptionPane.showMessageDialog(jd_VertexCover, "Arista " + jt_Vertice1_VertexCover.getText() + jt_Vertice2_VertexCover.getText() + " creada exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        graphManagement.SetVertexAndAdjList(maximoEnArreglo(Vertices) + 1);
+
+        for (int i = 0; i < Aristas.size(); i++) {
+            graphManagement.addEdge(Aristas.get(i).getVertice1(), Aristas.get(i).getVertice2());
+        }
+
+        long startTime = System.nanoTime();
+        VertexCover(graphManagement);
+        long estimatedTime = System.nanoTime() - startTime;
+        
+        String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
+
+        jl_timeElapsed_VertexCover.setText(TiempoTranscurrido);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,6 +511,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -467,6 +525,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Knapsack;
     private javax.swing.JDialog jd_VertexCover;
     private javax.swing.JLabel jl_SetImage;
+    private javax.swing.JLabel jl_timeElapsed_Knapsack;
+    private javax.swing.JLabel jl_timeElapsed_VertexCover;
     private javax.swing.JPanel jp_showGraph;
     private javax.swing.JTextField jt_Vertice1_VertexCover;
     private javax.swing.JTextField jt_Vertice2_VertexCover;
@@ -483,15 +543,18 @@ public class Principal extends javax.swing.JFrame {
     int CapacidadMochilas = 0;
     int ValoresIguales = 0;
     int[][] ValoresMochilas;
-    
+
     String ValoresVisibles = "";
     /*Knapsack*/
-    
-    /*Vertex Cover*/
+
+ /*Vertex Cover*/
     Graph graph = new SingleGraph("Vertex Cover");
+    Grafo graphManagement = new Grafo(0);
+    ArrayList<Arista> Aristas = new ArrayList();
+    ArrayList Vertices = new ArrayList();
     Viewer viewer;
+
     /*Vertex Cover*/
-    
     public void valoresDistintos() {
         ArrayList CopiaValores = new ArrayList();
         CopiaValores = (ArrayList) Valores.clone();
@@ -510,27 +573,27 @@ public class Principal extends javax.swing.JFrame {
     public void Knapsack() {
         CapacidadMochilas = Integer.parseInt(jt_capacidadMochilas.getText());
         ValoresMochilas = new int[Valores.size() + 1][CapacidadMochilas + 1];
-        
+
         for (int i = 0; i <= CapacidadMochilas; i++) {
             ValoresMochilas[0][i] = 0;
         }
-        
+
         for (int i = 0; i <= Valores.size(); i++) {
             ValoresMochilas[i][0] = 0;
         }
-        
+
         for (int i = 1; i <= Pesos.size(); i++) {
             for (int j = 1; j <= CapacidadMochilas; j++) {
-                if ((int)Pesos.get(i - 1) <= j) {
-                    ValoresMochilas[i][j] = maximo((int)Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int)Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
-                }else{
+                if ((int) Pesos.get(i - 1) <= j) {
+                    ValoresMochilas[i][j] = maximo((int) Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int) Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
+                } else {
                     ValoresMochilas[i][j] = ValoresMochilas[i - 1][j];
                 }
             }
         }
-        
+
         ValoresVisibles += "--------------------------------" + "\n";
-        
+
         for (int i = 1; i <= Pesos.size(); i++) {
             ValoresVisibles += "Mochila #" + i + "\n";
             for (int j = 1; j <= CapacidadMochilas; j++) {
@@ -541,16 +604,90 @@ public class Principal extends javax.swing.JFrame {
             ValoresVisibles += "\n" + "\n";
         }
     }
-    
-    public int maximo(int a, int b){
+
+    public int maximo(int a, int b) {
         int maximo = 0;
-        
+
         if (a > b) {
             maximo = a;
-        }else{
+        } else {
             maximo = b;
         }
-        
+
         return maximo;
+    }
+
+    public boolean verticeExistente(String Vertice) {
+        boolean Existente = false;
+
+        for (int i = 0; i < Vertices.size(); i++) {
+            if (Vertices.get(i).equals(Vertice)) {
+                Existente = true;
+            }
+        }
+
+        return Existente;
+    }
+
+    public boolean aristaExistente(String Arista) {
+        boolean Existente = false;
+
+        for (int i = 0; i < Aristas.size(); i++) {
+            if (Aristas.get(i).getNombre().equals(Arista)) {
+                Existente = true;
+            }
+        }
+
+        return Existente;
+    }
+
+    public void VertexCover(Grafo GrafoVC) {
+
+        boolean visitado[] = new boolean[GrafoVC.getVertices()];
+
+        for (int i = 0; i < GrafoVC.getVertices(); i++) {
+            visitado[i] = false;
+        }
+
+        Iterator<Integer> i;
+
+        for (int j = 0; j < GrafoVC.getVertices(); j++) {
+            if (visitado[j] == false) {
+                i = GrafoVC.getListaAdyacencia()[j].iterator();
+
+                while (i.hasNext()) {
+                    int verticeTemporal = i.next();
+
+                    if (visitado[verticeTemporal] == false) {
+                        visitado[verticeTemporal] = true;
+                        visitado[j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        while (graph.getNodeCount() > 0) {
+            graph.removeNode(0);
+        }
+
+        for (int j = 0; j < GrafoVC.getVertices(); j++) {
+            if (visitado[j]) {
+                Node n = graph.addNode(Integer.toString(j));
+                n.addAttribute("ui.label", Integer.toString(j));
+            }
+        }
+    }
+
+    public int maximoEnArreglo(ArrayList Vertices) {
+        int max = -1;
+
+        for (int i = 0; i < Vertices.size(); i++) {
+            if ((int) Vertices.get(i) >= max) {
+                max = (int) Vertices.get(i);
+            }
+        }
+
+        return max;
     }
 }
