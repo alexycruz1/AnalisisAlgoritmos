@@ -39,6 +39,10 @@ public class Principal extends javax.swing.JFrame {
         Viewer viewer = graph.display(true);
         View view = viewer.getDefaultView();
         jp_showGraph.add((Component) view);
+
+        Viewer viewer_color = KCgraph.display(true);
+        View view_color = viewer_color.getDefaultView();
+        jp_showGraph1.add((Component) view_color);
     }
 
     /**
@@ -73,6 +77,17 @@ public class Principal extends javax.swing.JFrame {
         jp_showGraph = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jl_timeElapsed_VertexCover = new javax.swing.JLabel();
+        jd_kcoloreabilidad = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        jt_Vertice_color = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jt_Vertice1_color = new javax.swing.JTextField();
+        jt_Vertice2_color = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jp_showGraph1 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jl_timeElapsed_color = new javax.swing.JLabel();
         jb_Coloreabilidad = new javax.swing.JButton();
         jb_VertexCover = new javax.swing.JButton();
         jb_Clique = new javax.swing.JButton();
@@ -167,6 +182,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Arista");
 
         jButton3.setText("Agregar vertice");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -256,12 +276,118 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel9.setText("Vertice");
+
+        jLabel10.setText("Arista");
+
+        jButton8.setText("Agregar vertice");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Agregar arista");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jp_showGraph1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jp_showGraph1Layout = new javax.swing.GroupLayout(jp_showGraph1);
+        jp_showGraph1.setLayout(jp_showGraph1Layout);
+        jp_showGraph1Layout.setHorizontalGroup(
+            jp_showGraph1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jp_showGraph1Layout.setVerticalGroup(
+            jp_showGraph1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+
+        jButton10.setText("Correr K Coloreabilidad");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jl_timeElapsed_color.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_timeElapsed_color.setText("Tiempo Transcurrido");
+
+        javax.swing.GroupLayout jd_kcoloreabilidadLayout = new javax.swing.GroupLayout(jd_kcoloreabilidad.getContentPane());
+        jd_kcoloreabilidad.getContentPane().setLayout(jd_kcoloreabilidadLayout);
+        jd_kcoloreabilidadLayout.setHorizontalGroup(
+            jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jp_showGraph1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                        .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(31, 31, 31)
+                        .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jt_Vertice_color, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Vertice1_color, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton10))
+                            .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                                .addComponent(jt_Vertice2_color, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                                .addComponent(jl_timeElapsed_color, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+        );
+        jd_kcoloreabilidadLayout.setVerticalGroup(
+            jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jt_Vertice_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8)))
+                    .addGroup(jd_kcoloreabilidadLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton10)))
+                .addGap(32, 32, 32)
+                .addGroup(jd_kcoloreabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jt_Vertice1_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Vertice2_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9)
+                    .addComponent(jl_timeElapsed_color))
+                .addGap(18, 18, 18)
+                .addComponent(jp_showGraph1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jb_Coloreabilidad.setText("K-Coloreabilidad en grafos");
         jb_Coloreabilidad.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jb_ColoreabilidadMouseMoved(evt);
+            }
+        });
+        jb_Coloreabilidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_ColoreabilidadMouseClicked(evt);
             }
         });
 
@@ -415,11 +541,11 @@ public class Principal extends javax.swing.JFrame {
         long startTime = System.nanoTime();
         Knapsack();
         long estimatedTime = System.nanoTime() - startTime;
-        
+
         String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
 
         jl_timeElapsed_Knapsack.setText(TiempoTranscurrido);
-        
+
         jta_ValoresIngresados.setText(ValoresVisibles);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -465,11 +591,89 @@ public class Principal extends javax.swing.JFrame {
         long startTime = System.nanoTime();
         VertexCover(graphManagement);
         long estimatedTime = System.nanoTime() - startTime;
-        
+
         String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
 
         jl_timeElapsed_VertexCover.setText(TiempoTranscurrido);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        Node n = KCgraph.addNode(jt_Vertice_color.getText());
+        n.addAttribute("ui.label", jt_Vertice_color.getText());
+
+        colorVertices.add(Integer.parseInt(jt_Vertice_color.getText()));
+
+        JOptionPane.showMessageDialog(jd_kcoloreabilidad, "Nodo " + jt_Vertice_color.getText() + " creado exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Edge e = KCgraph.addEdge(jt_Vertice1_color.getText() + jt_Vertice2_color.getText(), jt_Vertice1_color.getText(), jt_Vertice2_color.getText());
+        e.addAttribute("ui.label", jt_Vertice1_color.getText() + jt_Vertice2_color.getText());
+
+        Arista nuevaArista = new Arista(jt_Vertice1_color.getText() + jt_Vertice2_color.getText(), Integer.parseInt(jt_Vertice1_color.getText()), Integer.parseInt(jt_Vertice2_color.getText()));
+        colorAristas.add(nuevaArista);
+
+        JOptionPane.showMessageDialog(jd_kcoloreabilidad, "Arista " + jt_Vertice1_color.getText() + jt_Vertice2_color.getText() + " creada exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        Grafo manage_color = new Grafo(0);
+        manage_color.SetVertexAndAdjList(maximoEnArreglo(colorVertices) + 1);
+
+        for (int i = 0; i < colorAristas.size(); i++) {
+            manage_color.addEdge(colorAristas.get(i).getVertice1(), colorAristas.get(i).getVertice2());
+        }
+
+        long startTime = System.nanoTime();
+        int[] result = manage_color.greedyColoring();
+        for (int i = 0; i < KCgraph.getNodeCount(); i++) {
+            KCgraph.getNode(i).addAttribute("ui.style", "size: 20px;");
+            System.out.println(result[i+1]);
+            switch (result[i+1]){
+                case 0:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: red;");
+                    break;
+                case 1:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: green;");
+                    break;
+                case 2:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: blue;");
+                    break;
+                case 3:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: orange;");
+                    break;
+                case 4:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: purple;");
+                    break;
+                case 5:
+                    KCgraph.getNode(i).addAttribute("ui.style", "fill-color: yellow;");
+                    break;
+            }
+                    
+        }
+        long estimatedTime = System.nanoTime() - startTime;
+
+        String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
+
+        jl_timeElapsed_color.setText(TiempoTranscurrido);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jb_ColoreabilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ColoreabilidadMouseClicked
+        jd_kcoloreabilidad.setModal(true);
+        jd_kcoloreabilidad.pack();
+        jd_kcoloreabilidad.setLocationRelativeTo(this);
+        jd_kcoloreabilidad.setVisible(true);
+    }//GEN-LAST:event_jb_ColoreabilidadMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+
+    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -508,15 +712,20 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_Clique;
     private javax.swing.JButton jb_Coloreabilidad;
@@ -524,13 +733,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_VertexCover;
     private javax.swing.JDialog jd_Knapsack;
     private javax.swing.JDialog jd_VertexCover;
+    private javax.swing.JDialog jd_kcoloreabilidad;
     private javax.swing.JLabel jl_SetImage;
     private javax.swing.JLabel jl_timeElapsed_Knapsack;
     private javax.swing.JLabel jl_timeElapsed_VertexCover;
+    private javax.swing.JLabel jl_timeElapsed_color;
     private javax.swing.JPanel jp_showGraph;
+    private javax.swing.JPanel jp_showGraph1;
     private javax.swing.JTextField jt_Vertice1_VertexCover;
+    private javax.swing.JTextField jt_Vertice1_color;
     private javax.swing.JTextField jt_Vertice2_VertexCover;
+    private javax.swing.JTextField jt_Vertice2_color;
     private javax.swing.JTextField jt_Vertice_VertexCover;
+    private javax.swing.JTextField jt_Vertice_color;
     private javax.swing.JTextField jt_capacidadMochilas;
     private javax.swing.JTextField jt_pesoKnapsack;
     private javax.swing.JTextField jt_valorKnapsack;
@@ -546,8 +761,13 @@ public class Principal extends javax.swing.JFrame {
 
     String ValoresVisibles = "";
     /*Knapsack*/
+    /*K-Coloreabilidad */
+    Graph KCgraph = new SingleGraph("K-coloreabilidad");
+    ArrayList colorVertices = new ArrayList();
+    ArrayList<Arista> colorAristas = new ArrayList();
+    /*K-Coloreabilidad */
 
- /*Vertex Cover*/
+    /*Vertex Cover*/
     Graph graph = new SingleGraph("Vertex Cover");
     Grafo graphManagement = new Grafo(0);
     ArrayList<Arista> Aristas = new ArrayList();
