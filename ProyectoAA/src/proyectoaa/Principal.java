@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -109,9 +111,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Capacidad mochilas");
+        jLabel3.setText("Capacidad mochila");
 
-        jButton2.setText("Agregar a la mochila");
+        jButton2.setText("Agregar paquete");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -182,11 +184,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Arista");
 
         jButton3.setText("Agregar vertice");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -281,11 +278,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel10.setText("Arista");
 
         jButton8.setText("Agregar vertice");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
-            }
-        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -587,7 +579,7 @@ public class Principal extends javax.swing.JFrame {
         }
 
         long startTime = System.nanoTime();
-        VertexCover(graphManagement);
+        VertexCover();
         long estimatedTime = System.nanoTime() - startTime;
 
         String TiempoTranscurrido = Long.toString(estimatedTime) + " milisegundos";
@@ -664,14 +656,6 @@ public class Principal extends javax.swing.JFrame {
         jd_kcoloreabilidad.setLocationRelativeTo(this);
         jd_kcoloreabilidad.setVisible(true);
     }//GEN-LAST:event_jb_ColoreabilidadMouseClicked
-
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-
-    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -775,7 +759,6 @@ public class Principal extends javax.swing.JFrame {
     Viewer viewer;
 
     /*Vertex Cover*/
-
     public void Knapsack() {
         CapacidadMochilas = Integer.parseInt(jt_capacidadMochilas.getText());
 
@@ -788,20 +771,20 @@ public class Principal extends javax.swing.JFrame {
                 if (i == 0 || j == 0) {
                     ValoresMochilas[i][j] = 0;
                     Resultante.add(ValoresMochilas[i][j]);
-                    
-                } else if ((int)Pesos.get(i - 1) <= j) {
-                    ValoresMochilas[i][j] = maximo((int)Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int)Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
+
+                } else if ((int) Pesos.get(i - 1) <= j) {
+                    ValoresMochilas[i][j] = maximo((int) Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int) Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
                     Resultante.add(ValoresMochilas[i][j]);
-                    
+
                 } else {
                     ValoresMochilas[i][j] = ValoresMochilas[i - 1][j];
                     Resultante.add(ValoresMochilas[i][j]);
                 }
             }
         }
-        
-        ValoresVisibles += "--------------------------------------------------------" + "\n" +
-                "El valor maximo posible es: " + ValoresMochilas[ValoresDistintos][CapacidadMochilas];
+
+        ValoresVisibles += "--------------------------------------------------------" + "\n"
+                + "El valor maximo posible es: " + ValoresMochilas[ValoresDistintos][CapacidadMochilas];
     }
 
     public int maximo(int a, int b) {
@@ -841,40 +824,42 @@ public class Principal extends javax.swing.JFrame {
         return Existente;
     }
 
-    public void VertexCover(Grafo GrafoVC) {
+    void BFS(int nodo, boolean visited[]) {
 
-        boolean visitado[] = new boolean[GrafoVC.getVertices()];
+        LinkedList<Integer> listaNodos = new LinkedList<Integer>();
+        listaNodos.add(nodo);
+        while (!listaNodos.isEmpty()) {
+            nodo = listaNodos.poll();
 
-        for (int i = 0; i < GrafoVC.getVertices(); i++) {
-            visitado[i] = false;
-        }
-
-        Iterator<Integer> i;
-
-        for (int j = 0; j < GrafoVC.getVertices(); j++) {
-            if (visitado[j] == false) {
-                i = GrafoVC.getListaAdyacencia()[j].iterator();
-
-                while (i.hasNext()) {
-                    int verticeTemporal = i.next();
-
-                    if (visitado[verticeTemporal] == false) {
-                        visitado[verticeTemporal] = true;
-                        visitado[j] = true;
-                        break;
-                    }
+            //get all the children of this node
+            ListIterator<Integer> nodoActual = (graphManagement.getListaAdyacencia())[nodo].listIterator();
+            while (nodoActual.hasNext()) {
+                int nodoAdyacente = nodoActual.next();
+                if (!visited[nodo] && !visited[nodoAdyacente]) {
+                    visited[nodoAdyacente] = true;
+                    listaNodos.add(nodoAdyacente);
                 }
             }
         }
+    }
 
-        while (graph.getNodeCount() > 0) {
+    void VertexCover() {
+        boolean visited[] = new boolean[graphManagement.getVertices()];
+        
+        for (int i = 0; i < graphManagement.getVertices(); i++) {
+            if (!visited[i]) {
+                BFS(i, visited);
+            }
+        }
+        
+         while (graph.getNodeCount() > 0) {
             graph.removeNode(0);
         }
 
-        for (int j = 0; j < GrafoVC.getVertices(); j++) {
-            if (visitado[j]) {
-                Node n = graph.addNode(Integer.toString(j));
-                n.addAttribute("ui.label", Integer.toString(j));
+        for (int i = 0; i < graphManagement.getVertices(); i++) {
+            if (!visited[i]) {
+                Node n = graph.addNode(Integer.toString(i));
+                n.addAttribute("ui.label", Integer.toString(i));
             }
         }
     }
