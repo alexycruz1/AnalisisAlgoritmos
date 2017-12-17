@@ -532,8 +532,6 @@ public class Principal extends javax.swing.JFrame {
         }
 
         jta_ValoresIngresados.setText(ValoresVisibles);
-
-        valoresDistintos();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -630,8 +628,8 @@ public class Principal extends javax.swing.JFrame {
         int[] result = manage_color.greedyColoring();
         for (int i = 0; i < KCgraph.getNodeCount(); i++) {
             KCgraph.getNode(i).addAttribute("ui.style", "size: 20px;");
-            System.out.println(result[i+1]);
-            switch (result[i+1]){
+            System.out.println(result[i + 1]);
+            switch (result[i + 1]) {
                 case 0:
                     KCgraph.getNode(i).addAttribute("ui.style", "fill-color: red;");
                     break;
@@ -651,7 +649,7 @@ public class Principal extends javax.swing.JFrame {
                     KCgraph.getNode(i).addAttribute("ui.style", "fill-color: yellow;");
                     break;
             }
-                    
+
         }
         long estimatedTime = System.nanoTime() - startTime;
 
@@ -751,6 +749,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jt_valorKnapsack;
     private javax.swing.JTextArea jta_ValoresIngresados;
     // End of variables declaration//GEN-END:variables
+    String historialAlgoritmo = "";
+
     /*Knapsack*/
     ArrayList Valores = new ArrayList();
     ArrayList Pesos = new ArrayList();
@@ -761,13 +761,13 @@ public class Principal extends javax.swing.JFrame {
 
     String ValoresVisibles = "";
     /*Knapsack*/
-    /*K-Coloreabilidad */
+ /*K-Coloreabilidad */
     Graph KCgraph = new SingleGraph("K-coloreabilidad");
     ArrayList colorVertices = new ArrayList();
     ArrayList<Arista> colorAristas = new ArrayList();
     /*K-Coloreabilidad */
 
-    /*Vertex Cover*/
+ /*Vertex Cover*/
     Graph graph = new SingleGraph("Vertex Cover");
     Grafo graphManagement = new Grafo(0);
     ArrayList<Arista> Aristas = new ArrayList();
@@ -775,57 +775,37 @@ public class Principal extends javax.swing.JFrame {
     Viewer viewer;
 
     /*Vertex Cover*/
-    public void valoresDistintos() {
-        ArrayList CopiaValores = new ArrayList();
-        CopiaValores = (ArrayList) Valores.clone();
-
-        for (int i = 0; i < CopiaValores.size() - 1; i++) {
-            for (int j = i + 1; j < CopiaValores.size(); j++) {
-                if (CopiaValores.get(i) == CopiaValores.get(j)) {
-                    CopiaValores.remove(j);
-                }
-            }
-        }
-
-        ValoresDistintos = CopiaValores.size();
-    }
 
     public void Knapsack() {
         CapacidadMochilas = Integer.parseInt(jt_capacidadMochilas.getText());
-        ValoresMochilas = new int[Valores.size() + 1][CapacidadMochilas + 1];
 
-        for (int i = 0; i <= CapacidadMochilas; i++) {
-            ValoresMochilas[0][i] = 0;
-        }
+        ValoresDistintos = Valores.size();
+        ValoresMochilas = new int[ValoresDistintos + 1][CapacidadMochilas + 1];
+        ArrayList Resultante = new ArrayList();
 
-        for (int i = 0; i <= Valores.size(); i++) {
-            ValoresMochilas[i][0] = 0;
-        }
-
-        for (int i = 1; i <= Pesos.size(); i++) {
-            for (int j = 1; j <= CapacidadMochilas; j++) {
-                if ((int) Pesos.get(i - 1) <= j) {
-                    ValoresMochilas[i][j] = maximo((int) Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int) Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
+        for (int i = 0; i <= ValoresDistintos; i++) {
+            for (int j = 0; j <= CapacidadMochilas; j++) {
+                if (i == 0 || j == 0) {
+                    ValoresMochilas[i][j] = 0;
+                    Resultante.add(ValoresMochilas[i][j]);
+                    
+                } else if ((int)Pesos.get(i - 1) <= j) {
+                    ValoresMochilas[i][j] = maximo((int)Valores.get(i - 1) + ValoresMochilas[i - 1][j - (int)Pesos.get(i - 1)], ValoresMochilas[i - 1][j]);
+                    Resultante.add(ValoresMochilas[i][j]);
+                    
                 } else {
                     ValoresMochilas[i][j] = ValoresMochilas[i - 1][j];
+                    Resultante.add(ValoresMochilas[i][j]);
                 }
             }
         }
-
-        ValoresVisibles += "--------------------------------" + "\n";
-
-        for (int i = 1; i <= Pesos.size(); i++) {
-            ValoresVisibles += "Mochila #" + i + "\n";
-            for (int j = 1; j <= CapacidadMochilas; j++) {
-                if (ValoresMochilas[i][j] != 0) {
-                    ValoresVisibles += "Valor = " + ValoresMochilas[i][j];
-                }
-            }
-            ValoresVisibles += "\n" + "\n";
-        }
+        
+        ValoresVisibles += "--------------------------------------------------------" + "\n" +
+                "El valor maximo posible es: " + ValoresMochilas[ValoresDistintos][CapacidadMochilas];
     }
 
     public int maximo(int a, int b) {
+
         int maximo = 0;
 
         if (a > b) {
