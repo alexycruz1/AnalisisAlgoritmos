@@ -787,12 +787,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_ColoreabilidadMouseClicked
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        Node n = tspGraph.addNode(Integer.toString(tspVertices.size()));
-        n.addAttribute("ui.label", Integer.toString(tspVertices.size()));
+        Node n = tspGraph.addNode(Integer.toString(tspVertices.size()+1));
+        n.addAttribute("ui.label", Integer.toString(tspVertices.size()+1));
 
         tspVertices.add(tspVertices.size());
 
-        JOptionPane.showMessageDialog(jd_tsp, "Nodo " + Integer.toString(tspVertices.size()-1) + " creado exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(jd_tsp, "Nodo " + Integer.toString(tspVertices.size()) + " creado exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -808,7 +808,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        int[][] matrix = listToMatrix(tspAristas);
+        int[][] matrix = listToMatrix(tspAristas, tspVertices.size());
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -1062,10 +1062,10 @@ public class Principal extends javax.swing.JFrame {
         return max;
     }
 
-    public int[][] listToMatrix(ArrayList<Arista> aristas) {
-        int[][] matrix = new int[aristas.size()][aristas.size()];
-        for (int i = 0; i < aristas.size(); i++) {
-            for (int j = 0; j < aristas.size(); j++) {
+    public int[][] listToMatrix(ArrayList<Arista> aristas, int size) {
+        int[][] matrix = new int[size+1][size+1];
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= size; j++) {
                 matrix[i][j] = 0;
             }
         }
