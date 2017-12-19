@@ -29,14 +29,18 @@ public class TSPNearestNeighbour {
         int min = Integer.MAX_VALUE;
         boolean minFlag = false;
         System.out.print(1 + "\t");
-
-        while (!stack.isEmpty()) {
+ 
+        while (!stack.isEmpty())
+        {
             element = stack.peek();
             i = 1;
             min = Integer.MAX_VALUE;
-            while (i <= numberOfNodes) {
-                if (adjacencyMatrix[element][i] > 1 && visited[i] == 0) {
-                    if (min > adjacencyMatrix[element][i]) {
+            while (i <= numberOfNodes)
+            {
+                if (adjacencyMatrix[element][i] >= 1 && visited[i] == 0)
+                {
+                    if (min > adjacencyMatrix[element][i])
+                    {
                         min = adjacencyMatrix[element][i];
                         dst = i;
                         minFlag = true;
@@ -44,7 +48,8 @@ public class TSPNearestNeighbour {
                 }
                 i++;
             }
-            if (minFlag) {
+            if (minFlag)
+            {
                 visited[dst] = 1;
                 stack.push(dst);
                 System.out.print(dst + "\t");
