@@ -45,6 +45,10 @@ public class Principal extends javax.swing.JFrame {
         Viewer viewer_color = KCgraph.display(true);
         View view_color = viewer_color.getDefaultView();
         jp_showGraph1.add((Component) view_color);
+
+        Viewer viewer_tsp = tspGraph.display(true);
+        View view_tsp = viewer_tsp.getDefaultView();
+        jp_showGraph3.add((Component) view_tsp);
     }
 
     /**
@@ -90,9 +94,22 @@ public class Principal extends javax.swing.JFrame {
         jp_showGraph1 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jl_timeElapsed_color = new javax.swing.JLabel();
+        jd_tsp = new javax.swing.JDialog();
+        jLabel12 = new javax.swing.JLabel();
+        jt_Vertice1_tsp = new javax.swing.JTextField();
+        jt_Vertice2_tsp = new javax.swing.JTextField();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jp_showGraph3 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jl_timeElapsed_color1 = new javax.swing.JLabel();
+        jt_peso_tsp = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jb_Coloreabilidad = new javax.swing.JButton();
         jb_VertexCover = new javax.swing.JButton();
-        jb_Clique = new javax.swing.JButton();
+        jb_tsp = new javax.swing.JButton();
         jb_Knapsack = new javax.swing.JButton();
         jl_SetImage = new javax.swing.JLabel();
 
@@ -369,6 +386,113 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel12.setText("Arista");
+
+        jButton11.setText("Agregar vertice");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("Agregar arista");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jp_showGraph3.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jp_showGraph3Layout = new javax.swing.GroupLayout(jp_showGraph3);
+        jp_showGraph3.setLayout(jp_showGraph3Layout);
+        jp_showGraph3Layout.setHorizontalGroup(
+            jp_showGraph3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jp_showGraph3Layout.setVerticalGroup(
+            jp_showGraph3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+
+        jButton13.setText("Correr TSP");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jl_timeElapsed_color1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_timeElapsed_color1.setText("Tiempo Transcurrido");
+
+        jLabel6.setText("Vertice");
+
+        jLabel7.setText("Vertice");
+
+        jLabel8.setText("Peso");
+
+        javax.swing.GroupLayout jd_tspLayout = new javax.swing.GroupLayout(jd_tsp.getContentPane());
+        jd_tsp.getContentPane().setLayout(jd_tspLayout);
+        jd_tspLayout.setHorizontalGroup(
+            jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_tspLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jp_showGraph3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jd_tspLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(36, 36, 36)
+                        .addComponent(jt_Vertice1_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jt_peso_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jt_Vertice2_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton12)
+                        .addGap(124, 124, Short.MAX_VALUE)
+                        .addComponent(jl_timeElapsed_color1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_tspLayout.createSequentialGroup()
+                        .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jButton11))
+                        .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_tspLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel8)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_tspLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton13)
+                                .addGap(21, 21, 21)))))
+                .addContainerGap())
+        );
+        jd_tspLayout.setVerticalGroup(
+            jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_tspLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton11))
+                .addGap(23, 23, 23)
+                .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_tspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jt_Vertice1_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Vertice2_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12)
+                    .addComponent(jl_timeElapsed_color1)
+                    .addComponent(jt_peso_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jp_showGraph3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jb_Coloreabilidad.setText("K-Coloreabilidad en grafos");
@@ -395,10 +519,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jb_Clique.setText("Clique");
-        jb_Clique.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        jb_tsp.setText("TSP");
+        jb_tsp.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jb_CliqueMouseMoved(evt);
+                jb_tspMouseMoved(evt);
+            }
+        });
+        jb_tsp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_tspMouseClicked(evt);
             }
         });
 
@@ -422,7 +551,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_Knapsack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb_Clique, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_tsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jb_VertexCover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jb_Coloreabilidad, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addGap(52, 52, 52)
@@ -440,7 +569,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(jb_VertexCover, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
-                        .addComponent(jb_Clique, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jb_tsp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
                         .addComponent(jb_Knapsack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(92, Short.MAX_VALUE))
@@ -476,7 +605,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_VertexCoverMouseMoved
 
-    private void jb_CliqueMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CliqueMouseMoved
+    private void jb_tspMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_tspMouseMoved
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
@@ -488,7 +617,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jb_CliqueMouseMoved
+    }//GEN-LAST:event_jb_tspMouseMoved
 
     private void jb_KnapsackMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_KnapsackMouseMoved
         // TODO add your handling code here:
@@ -657,6 +786,46 @@ public class Principal extends javax.swing.JFrame {
         jd_kcoloreabilidad.setVisible(true);
     }//GEN-LAST:event_jb_ColoreabilidadMouseClicked
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        Node n = tspGraph.addNode(Integer.toString(tspVertices.size()));
+        n.addAttribute("ui.label", Integer.toString(tspVertices.size()));
+
+        tspVertices.add(tspVertices.size());
+
+        JOptionPane.showMessageDialog(jd_tsp, "Nodo " + Integer.toString(tspVertices.size()-1) + " creado exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        Edge e = tspGraph.addEdge("Arista: " + tspAristas.size() + " Peso: " + jt_peso_tsp.getText(), jt_Vertice1_tsp.getText(), jt_Vertice2_tsp.getText());
+        e.addAttribute("ui.label", jt_peso_tsp.getText());
+
+        Arista nuevaArista = new Arista(jt_peso_tsp.getText(), Integer.parseInt(jt_Vertice1_tsp.getText()), Integer.parseInt(jt_Vertice2_tsp.getText()));
+        nuevaArista.setPeso(Integer.parseInt(jt_peso_tsp.getText()));
+        tspAristas.add(nuevaArista);
+
+        JOptionPane.showMessageDialog(jd_tsp, "Arista " + jt_Vertice1_tsp.getText() + jt_Vertice2_tsp.getText() + " creada exitosamente", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        int[][] matrix = listToMatrix(tspAristas);
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println("");
+        }
+        TSPNearestNeighbour TSP = new TSPNearestNeighbour();
+        TSP.tsp(matrix);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jb_tspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_tspMouseClicked
+        jd_tsp.setModal(true);
+        jd_tsp.pack();
+        jd_tsp.setLocationRelativeTo(this);
+        jd_tsp.setVisible(true);
+    }//GEN-LAST:event_jb_tspMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -695,6 +864,9 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -703,33 +875,43 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jb_Clique;
     private javax.swing.JButton jb_Coloreabilidad;
     private javax.swing.JButton jb_Knapsack;
     private javax.swing.JButton jb_VertexCover;
+    private javax.swing.JButton jb_tsp;
     private javax.swing.JDialog jd_Knapsack;
     private javax.swing.JDialog jd_VertexCover;
     private javax.swing.JDialog jd_kcoloreabilidad;
+    private javax.swing.JDialog jd_tsp;
     private javax.swing.JLabel jl_SetImage;
     private javax.swing.JLabel jl_timeElapsed_Knapsack;
     private javax.swing.JLabel jl_timeElapsed_VertexCover;
     private javax.swing.JLabel jl_timeElapsed_color;
+    private javax.swing.JLabel jl_timeElapsed_color1;
     private javax.swing.JPanel jp_showGraph;
     private javax.swing.JPanel jp_showGraph1;
+    private javax.swing.JPanel jp_showGraph3;
     private javax.swing.JTextField jt_Vertice1_VertexCover;
     private javax.swing.JTextField jt_Vertice1_color;
+    private javax.swing.JTextField jt_Vertice1_tsp;
     private javax.swing.JTextField jt_Vertice2_VertexCover;
     private javax.swing.JTextField jt_Vertice2_color;
+    private javax.swing.JTextField jt_Vertice2_tsp;
     private javax.swing.JTextField jt_Vertice_VertexCover;
     private javax.swing.JTextField jt_Vertice_color;
     private javax.swing.JTextField jt_capacidadMochilas;
     private javax.swing.JTextField jt_pesoKnapsack;
+    private javax.swing.JTextField jt_peso_tsp;
     private javax.swing.JTextField jt_valorKnapsack;
     private javax.swing.JTextArea jta_ValoresIngresados;
     // End of variables declaration//GEN-END:variables
@@ -745,12 +927,16 @@ public class Principal extends javax.swing.JFrame {
 
     String ValoresVisibles = "";
     /*Knapsack*/
- /*K-Coloreabilidad */
+    /*K-Coloreabilidad */
     Graph KCgraph = new SingleGraph("K-coloreabilidad");
     ArrayList colorVertices = new ArrayList();
     ArrayList<Arista> colorAristas = new ArrayList();
     /*K-Coloreabilidad */
-
+// TSP
+    Graph tspGraph = new SingleGraph("K-coloreabilidad");
+    ArrayList tspVertices = new ArrayList();
+    ArrayList<Arista> tspAristas = new ArrayList();
+// TSP
  /*Vertex Cover*/
     Graph graph = new SingleGraph("Vertex Cover");
     Grafo graphManagement = new Grafo(0);
@@ -845,14 +1031,14 @@ public class Principal extends javax.swing.JFrame {
 
     void VertexCover() {
         boolean visited[] = new boolean[graphManagement.getVertices()];
-        
+
         for (int i = 0; i < graphManagement.getVertices(); i++) {
             if (!visited[i]) {
                 BFS(i, visited);
             }
         }
-        
-         while (graph.getNodeCount() > 0) {
+
+        while (graph.getNodeCount() > 0) {
             graph.removeNode(0);
         }
 
@@ -874,5 +1060,21 @@ public class Principal extends javax.swing.JFrame {
         }
 
         return max;
+    }
+
+    public int[][] listToMatrix(ArrayList<Arista> aristas) {
+        int[][] matrix = new int[aristas.size()][aristas.size()];
+        for (int i = 0; i < aristas.size(); i++) {
+            for (int j = 0; j < aristas.size(); j++) {
+                matrix[i][j] = 0;
+            }
+        }
+
+        for (int i = 0; i < aristas.size(); i++) {
+            matrix[aristas.get(i).Vertice1][aristas.get(i).Vertice2] = aristas.get(i).peso;
+            matrix[aristas.get(i).Vertice2][aristas.get(i).Vertice1] = aristas.get(i).peso;
+        }
+
+        return matrix;
     }
 }

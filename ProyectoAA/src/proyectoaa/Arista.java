@@ -13,7 +13,7 @@ public class Arista {
     String Nombre;
     int Vertice1;
     int Vertice2;
-
+    int peso;
     public Arista(String Nombre, int Vertice1, int Vertice2) {
         this.Nombre = Nombre;
         this.Vertice1 = Vertice1;
@@ -28,6 +28,14 @@ public class Arista {
         this.Nombre = Nombre;
     }
 
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+    
     public int getVertice1() {
         return Vertice1;
     }
