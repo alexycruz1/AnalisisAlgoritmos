@@ -738,6 +738,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        long startTime = System.nanoTime();
         Grafo manage_color = new Grafo(0);
         manage_color.SetVertexAndAdjList(maximoEnArreglo(colorVertices) + 1);
 
@@ -745,7 +746,6 @@ public class Principal extends javax.swing.JFrame {
             manage_color.addEdge(colorAristas.get(i).getVertice1(), colorAristas.get(i).getVertice2());
         }
 
-        long startTime = System.nanoTime();
         int[] result = manage_color.greedyColoring();
         for (int i = 0; i < KCgraph.getNodeCount(); i++) {
             KCgraph.getNode(i).addAttribute("ui.style", "size: 20px;");
@@ -974,11 +974,13 @@ public class Principal extends javax.swing.JFrame {
     ArrayList colorVertices = new ArrayList();
     ArrayList<Arista> colorAristas = new ArrayList();
     /*K-Coloreabilidad */
+    
 // TSP
     Graph tspGraph = new SingleGraph("TSP");
     ArrayList<Integer> tspVertices = new ArrayList();
     ArrayList<Arista> tspAristas = new ArrayList();
 // TSP
+    
  /*Vertex Cover*/
     Graph graph = new SingleGraph("Vertex Cover");
     Grafo graphManagement = new Grafo(0);
@@ -1059,7 +1061,6 @@ public class Principal extends javax.swing.JFrame {
         while (!listaNodos.isEmpty()) {
             nodo = listaNodos.poll();
 
-            //get all the children of this node
             ListIterator<Integer> nodoActual = (graphManagement.getListaAdyacencia())[nodo].listIterator();
             while (nodoActual.hasNext()) {
                 int nodoAdyacente = nodoActual.next();
