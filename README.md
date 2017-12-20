@@ -2,7 +2,7 @@
 
 Proyecto 
 Análisis de algoritmos
-Periodo 1, Semestre 1, 2017
+Trimestre IV, 2017
 
 ## Se realizaron los siguientes problemas: 
 
@@ -22,7 +22,7 @@ Se debe determinar en un grafo no dirigido sin pesos cual es el subgrafo complet
 
 El problema consiste en determinar un subconjunto de artículos que se pueden cargar en una mochila o en un camión, de forma en que se maximice la ganancia y el peso de los artículos no exceda la capacidad de la mochila o camión. 
 
-### Reporte
+## Reporte
 
 * [Informe de analisis](https://goo.gl/XdeVt4)
 
