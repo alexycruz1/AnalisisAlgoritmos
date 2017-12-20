@@ -9,6 +9,7 @@ package proyectoaa;
  *
  * @author felix
  */
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class TSPNearestNeighbour {
@@ -20,10 +21,12 @@ public class TSPNearestNeighbour {
         stack = new Stack<Integer>();
     }
 
-    public void tsp(int adjacencyMatrix[][]) {
+    public ArrayList<Integer> tsp(int adjacencyMatrix[][]) {
+        ArrayList<Integer> resp = new ArrayList();
         numberOfNodes = adjacencyMatrix[1].length - 1;
         int[] visited = new int[numberOfNodes + 1];
         visited[1] = 1;
+        resp.add(1);
         stack.push(1);
         int element, dst = 0, i;
         int min = Integer.MAX_VALUE;
@@ -53,10 +56,13 @@ public class TSPNearestNeighbour {
                 visited[dst] = 1;
                 stack.push(dst);
                 System.out.print(dst + "\t");
+                resp.add(dst);
                 minFlag = false;
                 continue;
             }
             stack.pop();
         }
+        System.out.println("\n");
+        return resp;
     }
 }

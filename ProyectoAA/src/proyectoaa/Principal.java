@@ -787,8 +787,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_ColoreabilidadMouseClicked
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        Node n = tspGraph.addNode(Integer.toString(tspVertices.size()+1));
-        n.addAttribute("ui.label", Integer.toString(tspVertices.size()+1));
+        Node n = tspGraph.addNode(Integer.toString(tspVertices.size() + 1));
+        n.addAttribute("ui.label", Integer.toString(tspVertices.size() + 1));
 
         tspVertices.add(tspVertices.size());
 
@@ -816,7 +816,49 @@ public class Principal extends javax.swing.JFrame {
             System.out.println("");
         }
         TSPNearestNeighbour TSP = new TSPNearestNeighbour();
-        TSP.tsp(matrix);
+        ArrayList<Integer> getList = TSP.tsp(matrix);
+        for (int i = 0; i < getList.size(); i++) {
+            System.out.println(getList.get(i));
+        }
+        tspVertices = new ArrayList();
+        tspVertices = getList;
+        ArrayList<Arista> nuevasAristas = new ArrayList();
+        for (int i = 0; i < tspAristas.size(); i++) {
+            for (int j = 0; j < getList.size(); j++) {
+                if (j != getList.size() - 1) {
+                    if (tspAristas.get(i).Vertice1 == getList.get(j) || tspAristas.get(i).Vertice1 == getList.get(j + 1)) {
+                        if (tspAristas.get(i).Vertice2 == getList.get(j) || tspAristas.get(i).Vertice2 == getList.get(j + 1)) {
+                            nuevasAristas.add(tspAristas.get(i));
+                        }
+                    }
+                } else {
+                    if (tspAristas.get(i).Vertice1 == getList.get(j) || tspAristas.get(i).Vertice1 == getList.get(0)) {
+                        if (tspAristas.get(i).Vertice2 == getList.get(j) || tspAristas.get(i).Vertice2 == getList.get(0)) {
+                            nuevasAristas.add(tspAristas.get(i));
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+        for (int i = 0; i < nuevasAristas.size(); i++) {
+            System.out.println(nuevasAristas.get(i).Vertice1 + " ----" + nuevasAristas.get(i).peso + "-------" + nuevasAristas.get(i).Vertice2);
+        }
+
+        tspAristas = nuevasAristas;
+        tspGraph.clear();
+
+        for (int i = 0; i < tspVertices.size(); i++) {
+            Node n = tspGraph.addNode(Integer.toString(tspVertices.get(i)));
+            n.addAttribute("ui.label", Integer.toString(tspVertices.get(i)));
+        }
+
+        for (int i = 0; i < tspAristas.size(); i++) {
+            Edge e = tspGraph.addEdge("Arista: " + i + " Peso: " + tspAristas.get(i).peso, Integer.toString(tspAristas.get(i).Vertice1), Integer.toString(tspAristas.get(i).Vertice2));
+            e.addAttribute("ui.label", Integer.toString(tspAristas.get(i).peso));
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jb_tspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_tspMouseClicked
@@ -933,8 +975,8 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Arista> colorAristas = new ArrayList();
     /*K-Coloreabilidad */
 // TSP
-    Graph tspGraph = new SingleGraph("K-coloreabilidad");
-    ArrayList tspVertices = new ArrayList();
+    Graph tspGraph = new SingleGraph("TSP");
+    ArrayList<Integer> tspVertices = new ArrayList();
     ArrayList<Arista> tspAristas = new ArrayList();
 // TSP
  /*Vertex Cover*/
@@ -1063,7 +1105,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public int[][] listToMatrix(ArrayList<Arista> aristas, int size) {
-        int[][] matrix = new int[size+1][size+1];
+        int[][] matrix = new int[size + 1][size + 1];
         for (int i = 1; i <= size; i++) {
             for (int j = 1; j <= size; j++) {
                 matrix[i][j] = 0;
