@@ -24,5 +24,6 @@ El problema consiste en determinar un subconjunto de artículos que se pueden ca
 
 ## Reporte
 
-* [Informe de analisis](https://goo.gl/XdeVt4)
+* [Informe de analisis](https://goo.gl/XdeVt4) - PDF
+* [Informe de analisis](https://goo.gl/25MCSf) - DOC
 
